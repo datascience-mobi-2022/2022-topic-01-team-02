@@ -1,0 +1,11 @@
+name: digit_recognitoin_env
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scipy
+  - scikit-learn
+prefix: /Users/benjaminwehnert/opt/anaconda3/envs/digit_recognitoin_env
