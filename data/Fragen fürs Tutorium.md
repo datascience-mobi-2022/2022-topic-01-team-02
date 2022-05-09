@@ -3,8 +3,8 @@
 ---
 
 ## Last week's progress
--Daten laden, vsc einrichten
--Durschnittsbild der einzelnen Zahlen erstellen, Datensatz anschauen
+-Daten laden und anschauen, vsc einrichten
+-Durschnittsbild der einzelnen Zahlen erstellen
 
 ## Questions
 -Environment nochmal extra in Windows einrichten?
