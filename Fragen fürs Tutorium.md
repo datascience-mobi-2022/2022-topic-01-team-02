@@ -16,3 +16,16 @@
 
 ## Plans for next week
 -Projektplan machen
+
+**17.05.2022**
+
+## Last week's progress
+-Präsentation
+-Recherche zu theoretischem Hintergrund
+
+## Questions
+-Wie kommt man von Eigenvektoren/-werten zum neuen Koordinatensystem mit Principal Components als Achsen
+-Ist unsere Powepoint Präsentation okay?
+
+## Plans for next week
+-Code für PCA
