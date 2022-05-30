@@ -29,3 +29,16 @@
 
 ## Plans for next week
 -Code für PCA
+
+
+**30.05.2022**
+
+## Last weeks progress
+-PCA
+
+## Questions
+-Ordnerstrukturen (Wie kann man z.B. den Array mit den z-transformierten Werten zwischenspeichern damit der nicht jedes mal neu berechnet werden muss)
+- Signle value decomposition besprechen
+
+## Plans for next week
+-kNN
