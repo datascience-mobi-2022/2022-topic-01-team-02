@@ -52,6 +52,10 @@
 ## Questions
 - sollen wir für den Report den Datensatz untersuchen (z.B. nicht verügbare Werte) und in welchen Abschnitt des Reports würden die Ergebnisse kommen?
 - Was gehört beim Report noch zu den Methods und was schon zu den Results?
+- Wo kommt der Code generell hin, Methods? 
+- kd trees notwendig? 
+- Further applications: Zählt auch schon als "Erweiterung" bzw sollten wir versuchen die knn Methode zu verbessern? (weighted knn)? Ist das erwarteter Teil des Hauptteils des Projekts? 
+- Erweiterung das auf Fashion data set anzuwenden? 
 
 ## Plans for next week
 -creative applications
