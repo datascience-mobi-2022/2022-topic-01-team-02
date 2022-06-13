@@ -42,3 +42,16 @@
 
 ## Plans for next week
 -kNN
+
+
+**14.06.2022**
+
+## Last weeks progress
+-kNN
+
+## Questions
+- sollen wir für den Report den Datensatz untersuchen (z.B. nicht verügbare Werte) und in welchen Abschnitt des Reports würden die Ergebnisse kommen?
+- Was gehört beim Report noch zu den Methods und was schon zu den Results?
+
+## Plans for next week
+-creative applications
