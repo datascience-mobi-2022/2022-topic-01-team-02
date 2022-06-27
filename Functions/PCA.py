@@ -1,5 +1,10 @@
 import numpy as np
 
+def z_transformation(set = traindataset, single_image = train_array[0, 1:]):
+    """
+    
+    """
+
 def PCA(X_no_label, num_components):
     """
     :param X_no_label: training dataset (2D-Array; no label)
