@@ -1,9 +1,19 @@
 import numpy as np
 
-def z_transformation(set = traindataset, single_image = train_array[0, 1:]):
+def z_transformation(set , single_image):
     """
-    
+    centering and scaling
+    :param set: training dataset, no labels
+    :param single_image: image for classification from test dataset
     """
+    std0 = []
+    for i in range(0, set.shape[1]):
+        if np.std(set[:, i]) == 0:
+            std0.append(i)
+    X_cleaned =  np.delete(set, std0, 1)
+
+    z_set = (X_cleaned - np.mean(X_cleaned, axis = 0))/np.std(X_cleaned, axis = 0)
+    return z_set
 
 def PCA(X_no_label, num_components):
     """
