@@ -13,6 +13,9 @@ def z_transformation(set , single_image):
     X_cleaned =  np.delete(set, std0, 1)
 
     z_set = (X_cleaned - np.mean(X_cleaned, axis = 0))/np.std(X_cleaned, axis = 0)
+
+    
+
     return z_set
 
 def PCA(X_no_label, num_components):
