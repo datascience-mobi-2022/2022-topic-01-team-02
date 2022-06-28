@@ -11,7 +11,7 @@ def z_transformation(set , single_image):
         if np.std(set[:, i]) == 0:
             std0.append(i)
     set_cleaned =  np.delete(set, std0, 1)
-    single_cleaned = np.delete(single_image, std0, 1)
+    single_cleaned = np.delete(single_image, std0)
 
     z_set = (set_cleaned - np.mean(set_cleaned, axis = 0))/np.std(set_cleaned, axis = 0)
     z_single = (single_cleaned - np.mean(set_cleaned, axis = 0))/np.std(set_cleaned, axis = 0)
