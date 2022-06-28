@@ -2,7 +2,7 @@ import numpy as np
 
 def z_transformation(set , single_image):
     """
-    centering and scaling
+    centering and scaling, returns transformed dataset and single image for comparison
     :param set: training dataset, no labels
     :param single_image: image for classification from test dataset
     """
@@ -10,30 +10,27 @@ def z_transformation(set , single_image):
     for i in range(0, set.shape[1]):
         if np.std(set[:, i]) == 0:
             std0.append(i)
-    X_cleaned =  np.delete(set, std0, 1)
+    set_cleaned =  np.delete(set, std0, 1)
+    single_cleaned = np.delete(single_image, std0, 1)
 
-    z_set = (X_cleaned - np.mean(X_cleaned, axis = 0))/np.std(X_cleaned, axis = 0)
+    z_set = (set_cleaned - np.mean(set_cleaned, axis = 0))/np.std(set_cleaned, axis = 0)
+    z_single = (single_cleaned - np.mean(set_cleaned, axis = 0))/np.std(set_cleaned, axis = 0)
 
-    
 
-    return z_set
+    return z_set, z_single
 
-def PCA(X_no_label, num_components):
+
+
+def PCA(clean_set, clean_img, num_components=10):
     """
-    :param X_no_label: training dataset (2D-Array; no label)
+    principal component analysis, returns array of dataset and single image with defined number of components
+    :param clean_set: training dataset (2D-Array; no label; after z-transformation)
+    :param clean_img: single image (1D-Array; no label; after z-transformation)
     :param num_components): number of components (integer)
     """
-    #z-transformation
-    std0 = []
-    for i in range(0, X_no_label.shape[1]):
-        if np.std(X_no_label[:, i]) == 0:
-            std0.append(i)
-    X_cleaned =  np.delete(X_no_label, std0, 1)
-
-    X_z = (X_cleaned - np.mean(X_cleaned, axis = 0))/np.std(X_cleaned, axis = 0)
 
     #variance
-    cov_arr = np.cov(X_z, rowvar = False)
+    cov_arr = np.cov(clean_set, rowvar = False)
 
     #eigenvalues, eigenvectors
     eigen_val, eigen_vec = np.linalg.eigh(cov_arr)
@@ -47,6 +44,7 @@ def PCA(X_no_label, num_components):
     eigenvec_subset = sorted_eigenvec[:, 0:num_components]
 
     #dimension reduction
-    X_reduced = np.dot(eigenvec_subset.transpose(), X_z.transpose()).transpose()
+    set_reduced = np.dot(eigenvec_subset.transpose(), clean_set.transpose()).transpose()
+    img_reduced = np.dot(eigenvec_subset.transpose(), clean_img.transpose()).transpose()
 
-    return X_reduced
+    return set_reduced, img_reduced
