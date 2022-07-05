@@ -59,3 +59,16 @@
 
 ## Plans for next week
 -creative applications
+
+
+**05.07.2022**
+
+## Last weeks progress
+- Funktionen für Report
+
+## Questions
+- Muss man packages in .py files mit funktionen importieren oder erst im Notebook?
+
+## Plans for next week
+- Report!!
+- wie funktioniert debugger? Was muss man bei Python Skript im Vergleich zu Notebook beachten?
