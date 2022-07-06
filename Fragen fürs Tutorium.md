@@ -68,7 +68,7 @@
 
 ## Questions
 - Muss man packages in .py files mit funktionen importieren oder erst im Notebook?
+- wie funktioniert debugger? Was muss man bei Python Skript im Vergleich zu Notebook beachten?
 
 ## Plans for next week
 - Report!!
-- wie funktioniert debugger? Was muss man bei Python Skript im Vergleich zu Notebook beachten?
