@@ -12,7 +12,7 @@ def show_digit(dataset, sample = 0):
     img = dataset[sample, 1:]
     img.shape = (28,28)
     plt.title(f'image at index {sample}')
-    plt.imshow(img2, 'gray')
+    plt.imshow(img, 'gray')
     return plt.imshow(img, 'gray')
 
 
