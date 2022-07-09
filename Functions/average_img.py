@@ -1,26 +1,31 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-def avg_images_one_to_nine(dataset):
-    """
+
+def avg_digit_img(dat, digit):
+
+    list_digit = []
+    for i in range(0, dat.shape[0]):
+        if dat[i, 0] == digit:
+            list_digit.append(i)
+
+    avg = np.zeros((1,784))
     
-    :param dataset: numpy array of train or test dataset
-    """
+    for j in range(0, len(list_digit)):
+        avg += dat[list_digit[j], 1:]
+    avg.shape = (28,28)
+    avg /= len(list_digit)
 
+    return avg
+
+def digits(dat):
     fig = plt.figure(figsize=(10,5))
     for i in range(0,10):
-        list_digit = []
-    for j in range(0, dataset.shape[0]):
-        if dataset[j, 0] == i:
-            list_digit.append(j)
-        avg = np.zeros((1,784))
-        for k in range(0, len(list_digit)):
-            avg += dataset[list_digit[k], 1:]
-        avg /= len(list_digit)
-
-        img = avg
+        img = avg_digit_img(dat, digit = i)
         img.shape = (28,28)
         fig.add_subplot(2, 5, i+1)
         plt.imshow(img, 'gray')
 
     plt.show()
+    
