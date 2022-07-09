@@ -48,3 +48,5 @@ def PCA(clean_set, clean_img, num_components=10):
     img_reduced = np.dot(eigenvec_subset.transpose(), clean_img.transpose()).transpose()
 
     return set_reduced, img_reduced
+
+    

@@ -38,3 +38,4 @@ def ten_digits(dataset):
         plt.imshow(img, 'gray')
 
     plt.show()
+    
