@@ -1,23 +1,4 @@
 import numpy as np
-import pandas as pd
-#load data
-train_digits = pd.read_csv("data/mnist_train.csv")
-test_digits = pd.read_csv("data/mnist_test.csv")
-#convert pandas Data Frame to Numpy Array
-train_array = train_digits.to_numpy()
-test_array = test_digits.to_numpy()
-
-
-def distances(reference_array, sample):
-    ref_rows = reference_array.shape[0]
-
-    sample_dot = (sample**2).sum(axis=0)*np.ones(shape=(1,ref_rows))
-    ref_dots = (reference_array[:, :]**2).sum(axis=1)
-    dist_squared =  sample_dot + ref_dots - 2*np.dot(sample, reference_array[:, :].T)
-    dist_array = np.sqrt(dist_squared)
-    dist = dist_array.tolist()[0]
-    return dist
-
 
 def kNN(ref_arr, PCs_arr, PCs_img, k, train = True):
     """
