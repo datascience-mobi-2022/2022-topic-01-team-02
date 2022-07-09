@@ -19,9 +19,10 @@ def distances(reference_array, sample):
     return dist
 
 
-def kNN(PCs_arr, PCs_img, k, train = True):
+def kNN(ref_arr, PCs_arr, PCs_img, k, train = True):
     """
     k nearest neighbours, returns the digit which had the smallest euclidean distances among k-neighbours
+    :param ref_arr: Reference array with labels in the 1st column
     :param PCs_arr: Principle components of training data, without labels
     :param PCs_img: Principle components of sample image
     :k: number of nearest neighbours
@@ -46,7 +47,7 @@ def kNN(PCs_arr, PCs_img, k, train = True):
 
     # Which label occurs how often?
     for i in range(0, k):
-        counter[train_array[k_nearest[i],0]] += 1
+        counter[ref_arr[k_nearest[i],0]] += 1
     for j in range(0, 9):
         if counter[j] == max(counter):
             max_indices.append(j)
@@ -61,4 +62,4 @@ def kNN(PCs_arr, PCs_img, k, train = True):
             nearest = sorted(range(len(dist)), key = lambda sub: dist[sub])[1]
         else:
             nearest = sorted(range(len(dist)), key = lambda sub: dist[sub])[0]
-        return train_array[nearest,0]
+        return ref_arr[nearest,0]
