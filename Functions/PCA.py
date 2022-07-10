@@ -49,4 +49,23 @@ def PCA(clean_set, clean_img, num_components=10):
 
     return set_reduced, img_reduced
 
+
+def create_sorted_eigenvec(clean_set, num_components = 10):
+    """
     
+    
+    """
+    cov_arr = np.cov(clean_set, rowvar = False)
+    index_sorted = np.argsort(eigen_val)[::-1]
+    sorted_eigenvec = eigen_vec[:,index_sorted]
+    return sorted_eigenvec
+
+
+def image_only(clean_img, sorted_eigenvec):
+    img_reduced = np.dot(eigenvec_subset.transpose(), clean_img.transpose()).transpose()
+    return img_reduced
+
+
+def set_only(clean_set, sorted_eigenvec):
+    set_reduced = np.dot(eigenvec_subset.transpose(), clean_set.transpose()).transpose()
+    return set_reduced
