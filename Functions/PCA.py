@@ -99,7 +99,7 @@ def set_only(clean_set, sorted_eigenvec):
     return set_reduced
 
 
-def visualize_2d(reduced_dataset, i=0, j=1):
+def visualize_2d(reduced_dataset, labels, i=0, j=1):
     """
     scatterplot of principal images based on principal components
 
@@ -108,4 +108,4 @@ def visualize_2d(reduced_dataset, i=0, j=1):
     pca_df = pd.DataFrame(data = {f'PC{i}':reduced_dataset[:, i], f'PC{j}':reduced_dataset[:, j]})
     plt.figure(figsize = (12,12))
 
-    sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = train_array[:, 0] ,s = 10, palette = 'icefire', legend='full', style=train_array[:, 0])
+    sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 10, palette = 'icefire', legend='full', style=labels)
