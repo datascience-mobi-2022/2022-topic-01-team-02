@@ -104,4 +104,4 @@ def visualize_2d(reduced_dataset, i=0, j=1):
 
     :param reduced_dataset: dataset with PCs as features
     """
-    pca_df = 
+    #pca_df = 1
