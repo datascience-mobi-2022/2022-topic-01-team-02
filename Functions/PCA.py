@@ -3,7 +3,16 @@ import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def z_transformation(set , single_image):
+# import pixels with std = 0 as list
+std0_df = pd.read_csv("data/pca/std0.csv")
+std0 = list(std0_df["0"])
+
+# import trainarray where all pixels with std = 0 are deleted
+arr_cleaned_df = pd.read_csv("data/pca/cleaned_train_array.csv")
+arr_cleaned = arr_cleaned_df.to_numpy()
+
+
+def z_transformation(set, single_image):
     """
     centering and scaling, returns transformed dataset and single image for comparison
 
@@ -24,6 +33,30 @@ def z_transformation(set , single_image):
 
     return z_set, z_single
 
+
+def z_arr(arr):
+    """
+    centering and scaling, returns z-transformed array
+
+    :param arr: training array, without label
+    """
+    
+    z_arr = (arr_cleaned - np.mean(arr_cleaned, axis = 0))/np.std(arr_cleaned, axis = 0)    
+    
+    return z_arr
+
+
+def z_img(img):
+    """
+    centering and scaling, returns transformed single image
+
+    :param img: image without label
+    """
+    img_cleaned = np.delete(img, std0)
+
+    z_img = (img_cleaned - np.mean(arr_cleaned, axis = 0))/np.std(arr_cleaned, axis = 0)
+    
+    return z_img
 
 
 def PCA(clean_set, clean_img, num_components=10):
