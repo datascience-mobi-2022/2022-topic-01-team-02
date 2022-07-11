@@ -1,6 +1,7 @@
 import numpy as np
 import seaborn as sb
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def z_transformation(set , single_image):
     """
