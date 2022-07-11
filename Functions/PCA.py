@@ -15,7 +15,7 @@ def z_transformation(set , single_image):
         if np.std(set[:, i]) == 0:
             std0.append(i)
     set_cleaned =  np.delete(set, std0, 1)
-    single_cleaned = np.delete(single_image, std0
+    single_cleaned = np.delete(single_image, std0)
 
     z_set = (set_cleaned - np.mean(set_cleaned, axis = 0))/np.std(set_cleaned, axis = 0)
     z_single = (single_cleaned - np.mean(set_cleaned, axis = 0))/np.std(set_cleaned, axis = 0)
@@ -104,4 +104,7 @@ def visualize_2d(reduced_dataset, i=0, j=1):
 
     :param reduced_dataset: dataset with PCs as features
     """
-    #pca_df = 1
+    pca_df = pd.DataFrame(data = {f'PC{i}':reduced_dataset[:, i], f'PC{j}':reduced_dataset[:, j]})
+    plt.figure(figsize = (12,12))
+
+    sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = train_array[:, 0] ,s = 10, palette = 'icefire', legend='full', style=train_array[:, 0])
