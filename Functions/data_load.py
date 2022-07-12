@@ -14,6 +14,16 @@ def load_data():
     return train_array, test_array
 
 
+def load_z_arr_train():
+    """
+    
+    :return: z-transformed train-array of train dataset and test dataset
+    """
+    z_arr_train_df = pd.read_csv("data/pca/z_array.csv", header=None)
+    z_arr_train = z_arr_train_df.to_numpy()
+    return z_arr_train
+
+
 def std0_load():
     """
     

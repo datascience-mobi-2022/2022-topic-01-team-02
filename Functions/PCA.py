@@ -85,7 +85,7 @@ def create_sorted_eigenvec(num_components):
     """
     needed for PCA of only the dataset or image
 
-    :param num_components: number of components (integer); default is set to 10
+    :param num_components: number of components (integer)
     :return: 2D-Array of sorted eigenvectors
     """
 
@@ -93,8 +93,9 @@ def create_sorted_eigenvec(num_components):
     eigen_val, eigen_vec = np.linalg.eigh(cov_arr)
     index_sorted = np.argsort(eigen_val)[::-1]
     sorted_eigenvec = eigen_vec[:,index_sorted]
+    eigenvec_subset = sorted_eigenvec[:, 0:num_components]
     
-    return sorted_eigenvec
+    return eigenvec_subset
 
 
 def image_only(z_img, sorted_eigenvec):
@@ -118,7 +119,6 @@ def arr_only(z_arr, sorted_eigenvec):
     :param sorted_eigenvec: 2D-Array of sorted eigenvectors from train or test dataset
     :return: dataset with reduced dimensions and PCs as features
     """
-
     arr_reduced = np.dot((sorted_eigenvec).transpose(), z_arr.transpose()).transpose()
     return arr_reduced
 

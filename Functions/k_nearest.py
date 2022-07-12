@@ -1,4 +1,9 @@
 import numpy as np
+from Functions import data_load as dat
+from Functions import PCA as pca
+
+train_array, test_array = dat.load_data()
+z_array = dat.load_z_arr_train()
 
 def kNN(ref_arr, arr_reduced, img_reduced, k, train = True):
     """
@@ -44,3 +49,66 @@ def kNN(ref_arr, arr_reduced, img_reduced, k, train = True):
         else:
             nearest = sorted(range(len(dist)), key = lambda sub: dist[sub])[0]
         return ref_arr[nearest,0]
+
+
+
+def validation_kNN_train(s_size, k=5, PC=30):
+    """
+    validates the error-rate (string) of kNN for given sample size, k, number of PC
+
+    :param s_size: number of pictures send into kNN-code
+    :param k: k nearest neighbours being selected
+    :param PC: number of principle components being compared
+    """
+
+    true = 0
+    false = 0
+    eigenvectors_sorted = pca.create_sorted_eigenvec(PC)
+    pca_arr = pca.arr_only(z_array, eigenvectors_sorted)
+    
+    for i in range(0, s_size):
+
+        z_image = z_array[29500+i, :]
+        pca_img = pca.image_only(z_image, eigenvectors_sorted)
+
+
+        result_kNN = kNN(train_array, pca_arr, pca_img, k, train=True)
+        if result_kNN == train_array[29500+i, 0]:
+            true += 1
+        else:
+            false += 1
+
+    return print(f'Anzahl richtig erkannter Digits: {true}\n\
+Anzahl falsch erkannter Digits: {false}\n\
+\nAnteil richtiger Vorhersagen: {(true/s_size)*100}%')
+
+
+
+
+def validation_kNN_train_matrix(s_size, k=5, PC=30):
+    """
+    validates the error-rate (integer) of kNN for given sample size, k, number of PC
+
+    :param s_size: number of pictures send into kNN-code
+    :param k: k nearest neighbours being selected
+    :param PC: number of principle components being compared
+    """
+# PCs und z_array outsourcen in die val_arr-Funktion
+    true = 0
+    false = 0
+    eigenvectors_sorted = pca.create_sorted_eigenvec(PC)
+    pca_arr = pca.arr_only(z_array, eigenvectors_sorted)
+    
+    for i in range(0, s_size):
+
+        z_image = z_array[29500+i, :]
+        pca_img = pca.image_only(z_image, eigenvectors_sorted)
+
+
+        result_kNN = kNN(train_array, pca_arr, pca_img, k, train=True)
+        if result_kNN == train_array[29500+i, 0]:
+            true += 1
+        else:
+            false += 1
+
+    return (true/s_size)*100
