@@ -8,8 +8,8 @@ std0_df = pd.read_csv("data/pca/std0.csv")
 std0 = list(std0_df["0"])
 
 # import trainarray where all pixels with std = 0 are deleted
-arr_cleaned_df = pd.read_csv("data/pca/cleaned_train_array.csv")
-arr_cleaned = arr_cleaned_df.to_numpy()
+train_arr_cleaned_df = pd.read_csv("data/pca/cleaned_train_array.csv")
+train_arr_cleaned = arr_cleaned_df.to_numpy()
 
 
 def z_transformation(set, single_image):
@@ -38,10 +38,10 @@ def z_arr(arr):
     """
     centering and scaling, returns z-transformed array
 
-    :param arr: training array, without label
+    :param arr: cleaned array, without label
     """
     
-    z_arr = (arr_cleaned - np.mean(arr_cleaned, axis = 0))/np.std(arr_cleaned, axis = 0)    
+    z_arr = (arr - np.mean(train_arr_cleaned, axis = 0))/np.std(train_arr_cleaned, axis = 0)    
     
     return z_arr
 
