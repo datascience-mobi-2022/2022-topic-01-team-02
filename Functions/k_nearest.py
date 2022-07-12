@@ -1,20 +1,20 @@
 import numpy as np
 
-def kNN(ref_arr, PCs_arr, PCs_img, k, train = True):
+def kNN(ref_arr, arr_reduced, img_reduced, k, train = True):
     """
     k nearest neighbours, returns the digit which had the smallest euclidean distances among k-neighbours
     :param ref_arr: Reference array with labels in the 1st column
-    :param PCs_arr: Principle components of training data, without labels
-    :param PCs_img: Principle components of sample image
+    :param arr_reduced: Principle components of training data, without labels
+    :param img_reduced: Principle components of sample image
     :k: number of nearest neighbours
     :train: "True" if sample image comes from training data
     """
 
    # Euclidian distance between sample image and all images in training array
-    arr_rows = PCs_arr.shape[0]
-    img_dot = (PCs_img**2).sum(axis=0)*np.ones(shape=(1,arr_rows))
-    arr_dot = (PCs_arr[:, :]**2).sum(axis=1)
-    dist_arr =  np.sqrt(img_dot + arr_dot - 2*np.dot(PCs_img, PCs_arr[:, :].T))
+    arr_rows = arr_reduced.shape[0]
+    img_dot = (img_reduced**2).sum(axis=0)*np.ones(shape=(1,arr_rows))
+    arr_dot = (arr_reduced[:, :]**2).sum(axis=1)
+    dist_arr =  np.sqrt(img_dot + arr_dot - 2*np.dot(img_reduced, arr_reduced[:, :].T))
     dist = dist_arr.tolist()[0]
     
     counter = [0,0,0,0,0,0,0,0,0,0]
