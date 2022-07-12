@@ -49,8 +49,8 @@ def correlation_heatmap(arr, name = 'array'):
     cov_arr = np.cov(arr, rowvar = False)
     cov_df = pd.DataFrame(cov_arr)
     sb.set(rc={"figure.dpi":200, "figure.figsize":(5, 5)})
-    sb.heatmap(cov_df, cmap="viridis", annot=False, square=True)
-    plt.title(f'Correlation of {name}', fontsize =10)
+    sb.heatmap(cov_df, cmap="viridis", annot=False, square=True, cbar_kws={"shrink": 0.8})
+    plt.title(f'Correlation of {name}', fontsize =9)
 
 
 def principal_comp_2d(reduced_arr, labels, i=1, j=2):
@@ -61,6 +61,6 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
     :param labels: in this case labels of digits for colour coding in plot
     """
     pca_df = pd.DataFrame(data = {f'PC{i}':reduced_arr[:, i-1], f'PC{j}':reduced_arr[:, j-1]})
-    sb.set(rc={"figure.dpi":500, "figure.figsize":(5, 5)})
+    sb.set(rc={"figure.dpi":250, "figure.figsize":(5, 5)})
 
     sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 1, palette = 'icefire', legend='full')
