@@ -2,14 +2,18 @@ import numpy as np
 import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
+import data_load as dat
+
+std0 = dat.std0_load()
+train_arr_cleaned = dat.clean_train_arr()
 
 # import pixels with std = 0 as list
-std0_df = pd.read_csv("data/pca/std0.csv")
-std0 = list(std0_df["0"])
+#std0_df = pd.read_csv("data/pca/std0.csv")
+#std0 = list(std0_df["0"])
 
 # import trainarray where all pixels with std = 0 are deleted
-train_arr_cleaned_df = pd.read_csv("data/pca/cleaned_train_array.csv")
-train_arr_cleaned = train_arr_cleaned_df.to_numpy()
+#train_arr_cleaned_df = pd.read_csv("data/pca/cleaned_train_array.csv")
+#train_arr_cleaned = train_arr_cleaned_df.to_numpy()
 
 
 def z_transformation(set, single_image):
@@ -54,7 +58,7 @@ def z_img(img):
     """
     img_cleaned = np.delete(img, std0)
 
-    z_img = (img_cleaned - np.mean(arr_cleaned, axis = 0))/np.std(arr_cleaned, axis = 0)
+    z_img = (img_cleaned - np.mean(train_arr_cleaned, axis = 0))/np.std(train_arr_cleaned, axis = 0)
     
     return z_img
 
