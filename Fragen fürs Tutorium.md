@@ -72,3 +72,9 @@
 
 ## Plans for next week
 - Report!!
+
+
+**05.07.2022**
+
+## Questions
+- Reduzierung der Dezimalzahllänge bei z_array

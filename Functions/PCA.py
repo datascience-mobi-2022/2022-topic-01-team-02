@@ -9,7 +9,7 @@ std0 = list(std0_df["0"])
 
 # import trainarray where all pixels with std = 0 are deleted
 train_arr_cleaned_df = pd.read_csv("data/pca/cleaned_train_array.csv")
-train_arr_cleaned = arr_cleaned_df.to_numpy()
+train_arr_cleaned = train_arr_cleaned_df.to_numpy()
 
 
 def z_transformation(set, single_image):
