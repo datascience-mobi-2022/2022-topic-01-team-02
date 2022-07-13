@@ -43,3 +43,12 @@ def clean_train_arr():
     train_arr_cleaned = train_arr_cleaned_df.to_numpy()
     return train_arr_cleaned
     
+
+def load_val_arr():
+    """
+
+    import validation array for k's and PC's
+    """
+    val_arr_df = pd.read_csv("data/val_array2.csv", header=None)
+    val_arr = val_arr_df.to_numpy()
+    return val_arr

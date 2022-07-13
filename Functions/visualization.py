@@ -53,6 +53,13 @@ def correlation_heatmap(arr, name = 'array'):
     plt.title(f'Correlation of {name}', fontsize =9)
 
 
+def heatmap(arr, name = 'variable parts'):
+    arr_df = pd.DataFrame(arr)
+    sb.set(rc={"figure.dpi":200, "figure.figsize":(5, 5)})
+    sb.heatmap(arr_df, cmap="viridis", annot=False, square=True, cbar_kws={"shrink": 0.8})
+    plt.title(f'Accuracy with variable {name}', fontsize =9)
+
+
 def principal_comp_2d(reduced_arr, labels, i=1, j=2):
     """
     scatterplot of principal images based on principal components
