@@ -49,6 +49,26 @@ def load_val_arr():
 
     import validation array for k's and PC's
     """
-    val_arr_df = pd.read_csv("data/val_array2.csv", header=None)
+    val_arr_df = pd.read_csv("data/val_array.csv", header=None)
     val_arr = val_arr_df.to_numpy()
     return val_arr
+
+
+def load_val_arr_1st():
+    """
+
+    import validation array for k's and PC's
+    """
+    val_arr_1st_df = pd.read_csv("data/val_array2.csv", header=None)
+    val_arr_1st = val_arr_1st_df.to_numpy()
+    return val_arr_1st
+
+
+def load_val_arr_2nd():
+    """
+
+    import validation array for k's and PC's
+    """
+    val_arr_2nd_df = pd.read_csv("data/val_array_PC30_40.csv", header=None)
+    val_arr_2nd = val_arr_2nd_df.to_numpy()
+    return val_arr_2nd
