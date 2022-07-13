@@ -56,7 +56,7 @@ def correlation_heatmap(arr, name = 'array'):
 def heatmap(arr, name = 'variable parts'):
     arr_df = pd.DataFrame(arr)
     sb.set(rc={"figure.dpi":200, "figure.figsize":(5, 5)})
-    sb.heatmap(arr_df, cmap="viridis", annot=False, square=True, cbar_kws={"shrink": 0.8})
+    sb.heatmap(arr_df, cmap="viridis", annot=True, annot_kws={"size": 16}, square=True, cbar_kws={"shrink": 0.8})
     plt.title(f'Accuracy with variable {name}', fontsize =9)
 
 
