@@ -8,4 +8,5 @@ dependencies:
   - seaborn
   - scipy
   - scikit-learn
+  - Pillow
 prefix: /Users/benjaminwehnert/opt/anaconda3/envs/digit_recognitoin_env
