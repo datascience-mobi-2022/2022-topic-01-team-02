@@ -49,6 +49,46 @@ def load_val_arr():
 
     import validation array for k's and PC's
     """
-    val_arr_df = pd.read_csv("data/val_array2.csv", header=None)
+    val_arr_df = pd.read_csv("data/val_array.csv", header=None)
     val_arr = val_arr_df.to_numpy()
     return val_arr
+
+
+def load_val_arr_1st():
+    """
+
+    import validation array for k's and PC's
+    """
+    val_arr_1st_df = pd.read_csv("data/val_array2.csv", header=None)
+    val_arr_1st = val_arr_1st_df.to_numpy()
+    return val_arr_1st
+
+
+def load_val_arr_2nd():
+    """
+
+    import validation array for k's and PC's
+    """
+    val_arr_2nd_df = pd.read_csv("data/val_array_PC30_40.csv", header=None)
+    val_arr_2nd = val_arr_2nd_df.to_numpy()
+    return val_arr_2nd
+
+
+def load_precise_val_arr():
+    """
+
+    import validation array (10000 references) for k's and PC's
+    """
+    precise_val_arr_df = pd.read_csv("data/precise_val_array.csv", header=None)
+    precise_val_arr = precise_val_arr_df.to_numpy()
+    return precise_val_arr
+
+
+def load_val_arr_index():
+    """
+
+    import validation array for k's and PC's with indices
+    """
+    val_arr_index_df = pd.read_csv("data/val_array_index.csv", index_col = 0)
+    val_arr_index = val_arr_index_df.to_numpy()
+    return val_arr_index
