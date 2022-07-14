@@ -72,3 +72,13 @@ def load_val_arr_2nd():
     val_arr_2nd_df = pd.read_csv("data/val_array_PC30_40.csv", header=None)
     val_arr_2nd = val_arr_2nd_df.to_numpy()
     return val_arr_2nd
+
+
+def load_precise_val_arr():
+    """
+
+    import validation array for k's and PC's
+    """
+    precise_val_arr_df = pd.read_csv("data/precise_val_array.csv", header=None)
+    precise_val_arr = precise_val_arr_df.to_numpy()
+    return precise_val_arr
