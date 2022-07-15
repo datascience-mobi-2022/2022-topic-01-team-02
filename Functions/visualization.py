@@ -44,6 +44,29 @@ def ten_digits(dataset):
 
     plt.show()
     
+def ten_digits_z_transfo(dataset, label):
+    """
+    
+    :param dataset: numpy array of train or test dataset, not containing label in first column
+    :param label: 
+    :return: prints first ten numbers
+    """
+
+    liste = []
+    for i in range(0,10):
+        j = 0
+        while i != label[j]:
+            j += 1
+        liste.append(j)
+    
+    fig = plt.figure(figsize=(10,5))
+    for i in range(0,10):
+        img = dataset[liste[i], :]
+        img.shape = (28,28)
+        fig.add_subplot(2, 5, i+1)
+        plt.imshow(img, 'gray')
+
+    plt.show()
 
 def correlation_heatmap(arr, name = 'array'):
     cov_arr = np.cov(arr, rowvar = False)
