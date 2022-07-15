@@ -52,6 +52,8 @@ def ten_digits_z_transfo(dataset, label):
     :return: prints first ten numbers
     """
 
+    
+
     liste = []
     for i in range(0,10):
         j = 0
@@ -91,6 +93,6 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
     :param labels: in this case labels of digits for colour coding in plot
     """
     pca_df = pd.DataFrame(data = {f'PC{i}':reduced_arr[:, i-1], f'PC{j}':reduced_arr[:, j-1]})
-    sb.set(rc={"figure.dpi":250, "figure.figsize":(5, 5)})
+    sb.set(rc={"figure.dpi":150, "figure.figsize":(5, 5)})
 
     sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 1, palette = 'icefire', legend='full')
