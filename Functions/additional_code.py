@@ -57,6 +57,7 @@ def load_add_img(filepath='data/input2.jpg'):
 add_img = load_add_img()
 
 def convert_add_img(img=add_img):
+    n = img.shape[0]//28
     img_arr = np.zeros((28,28))
     for h in range(0,28):
         for i in range(0,28):
