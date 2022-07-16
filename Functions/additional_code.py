@@ -13,7 +13,7 @@ train_arr_cleaned = dat.clean_train_arr()
 z_arr = pca.z_arr(train_arr_cleaned)
 reduced_arr = pca.arr_only(z_arr, pca.create_sorted_eigenvec(30))
 
-def load_jpg(file_path):
+def self_written_prediction(file_path):
     """
     loads jpg image and converts to np array (2D)
 
@@ -43,4 +43,4 @@ def load_jpg(file_path):
     pca_img = pca.image_only(img_z_transformed, eigenvectors_sorted)
     prediction = knn.kNN(train_array, pca_arr, pca_img, k=4, train=False)
     
-    return f"Algorithm predicts that you inputed a handwritten {prediction}"
+    return f"Your input is a handwritten {prediction}"
