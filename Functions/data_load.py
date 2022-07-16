@@ -92,3 +92,20 @@ def load_val_arr_index():
     val_arr_index_df = pd.read_csv("data/val_array_index.csv", index_col = 0)
     val_arr_index = val_arr_index_df.to_numpy()
     return val_arr_index
+
+
+def load_avg_list():
+    avg_list = []
+    for i in range(0, 10):
+        avg_df = pd.read_csv(f'data/avg/avg_{i}.csv', header=None)
+        avg_arr = avg_df.to_numpy()
+        avg_list.append(avg_arr)
+    return avg_list
+
+def load_weighting():
+    weighting_list = []
+    weighting_df = pd.read_csv("data/avg/weighting.csv", header=None)
+    weighting_array = weighting_df.to_numpy()   
+    for k in range(0, 784):
+        weighting_list.append(weighting_array[k, 0])
+    return weighting_list
