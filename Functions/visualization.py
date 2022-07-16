@@ -5,6 +5,11 @@ import seaborn as sb
 from Functions import PCA as pca
 from Functions import data_load as dat
 
+train_array, test_array = dat.load_data()
+train_arr_cleaned = dat.clean_train_arr()
+z_arr = pca.z_arr(train_arr_cleaned)
+reduced_arr = pca.arr_only(z_arr, pca.create_sorted_eigenvec(30))
+var = dat.load_variance()
 
 
 def show_digit(dataset, sample = 0):
@@ -96,3 +101,13 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
     sb.set(rc={"figure.dpi":150, "figure.figsize":(5, 5)})
 
     sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 1, palette = 'icefire', legend='full')
+
+
+def PC_variance():
+    fig = plt.figure(figsize=(8,4))
+    plt.grid(True, linewidth=.5)
+    plot = plt.plot([x for x in range(0,717)], var)
+    plt.xlabel('Principal Components')
+    plt.ylabel('obtained variance in percent')
+    plt.hlines(y = var[30], xmin=0, xmax=30, color='r', linewidth=.5)
+    plt.vlines(x=30, ymin=0, ymax=var[30], color='r', linewidth=.5)

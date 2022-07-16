@@ -109,3 +109,9 @@ def load_weighting():
     for k in range(0, 784):
         weighting_list.append(weighting_array[k, 0])
     return weighting_list
+
+def load_variance():
+    var = pd.read_csv('data/pca/variance_pc.csv', header=None)
+    var = var.to_numpy()
+    var= np.insert(var, 0, 0)
+    return var
