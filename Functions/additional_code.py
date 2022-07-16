@@ -44,3 +44,26 @@ def self_written_prediction(file_path):
     prediction = knn.kNN(train_array, pca_arr, pca_img, k=4, train=False)
     
     return f"Your input is a handwritten {prediction}"
+
+def load_add_img(filepath='data/input2.jpg'):
+    img = im.open(filepath)
+    img = img.convert('L')
+    img = np.asarray(img)
+    while img.shape[0]%28 != 0:
+        img = img[:img.shape[0]-1, :img.shape[1]-1]
+    n = img.shape[0]//28
+    return img
+
+add_img = load_add_img()
+
+def convert_add_img(img=add_img):
+    img_arr = np.zeros((28,28))
+    for h in range(0,28):
+        for i in range(0,28):
+            value = 0
+            for j in range(0,n):
+                for k in range(0,n):
+                    value += img[j+(h*n), k+(i*n)]
+            img_arr[h,i] = value//n**2
+    img_arr = 255-img_arr
+    return img_arr

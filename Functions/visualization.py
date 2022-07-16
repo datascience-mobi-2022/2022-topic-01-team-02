@@ -111,3 +111,7 @@ def PC_variance():
     plt.ylabel('obtained variance in percent')
     plt.hlines(y = var[30], xmin=0, xmax=30, color='r', linewidth=.5)
     plt.vlines(x=30, ymin=0, ymax=var[30], color='r', linewidth=.5)
+
+
+def display_add_img():
+    
