@@ -113,5 +113,3 @@ def PC_variance():
     plt.vlines(x=30, ymin=0, ymax=var[30], color='r', linewidth=.5)
 
 
-def display_add_img():
-    
