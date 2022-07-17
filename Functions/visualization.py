@@ -52,6 +52,7 @@ def ten_digits(dataset):
 
     plt.show()
     
+    
 def digits_after_z(dataset):
     arr = np.zeros(dataset.shape)
     for i in range(0,3):
