@@ -106,7 +106,7 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
 
 
 def PC_variance():
-    fig = plt.figure(figsize=(8,4))
+    fig = plt.figure(figsize=(6,3))
     plt.grid(True, linewidth=.5)
     plot = plt.plot([x for x in range(0,717)], var)
     plt.xlabel('Principal Components')
