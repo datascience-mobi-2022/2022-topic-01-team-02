@@ -10,6 +10,8 @@ train_arr_cleaned = dat.clean_train_arr()
 z_arr = pca.z_arr(train_arr_cleaned)
 reduced_arr = pca.arr_only(z_arr, pca.create_sorted_eigenvec(30))
 var = dat.load_variance()
+val_arr = dat.load_val_arr()
+precise_val_arr = dat.load_precise_val_arr()
 
 
 def show_digit(dataset, sample = 0):
@@ -113,3 +115,41 @@ def PC_variance():
     plt.vlines(x=30, ymin=0, ymax=var[30], color='r', linewidth=.5)
 
 
+def heatmap_k_PC(arr, ind_range, col_range, large=True, medium=False, small=False):
+    '''
+    returns heatmap displaying accuracy for variable k's and PC's
+    :param arr: array which displays accuracy for k's on x-axis and PC's on y-axis
+    :param ind_range: indeces-labeling, input -> range(a, b) a = start-value, b = end-value + 1
+    :param col_range: col-labeling, input -> range(a, b) a = start-value, b = end-value + 1
+    '''
+    arr_df = pd.DataFrame(arr)
+    inds = list(ind_range)
+    cols = list(col_range)
+    arr_df.set_axis([inds], axis='index', inplace=True)
+    arr_df.set_axis([cols], axis = 'columns', inplace=True)
+    if large == True:
+        sb.set(font_scale=0.5, rc={"figure.dpi":200, "figure.figsize":(2.5, 2.5)})
+        plt.title('Accuracy (%) with variable PCs and ks \n 1000 samples', fontsize =8, fontweight = 'bold')
+
+    if medium == True:
+        sb.set(font_scale=0.5, rc={"figure.dpi":200, "figure.figsize":(1.75, 1.75)})
+        plt.title('Accuracy (%) with variable PCs and ks \n 1000 samples', fontsize =6, fontweight = 'bold')
+
+    if small == True:
+        sb.set(font_scale=0.5, rc={"figure.dpi":200, "figure.figsize":(1.5, 1.5)})
+        plt.title('Accuracy (%) with variable PCs and ks \n 10000 samples', fontsize =6, fontweight = 'bold')
+
+    sb.heatmap(arr_df, cmap="viridis", square=False, cbar_kws={"shrink": 0.9})
+
+    plt.xlabel('number of k')
+    plt.ylabel('number of PC')
+
+
+def acc_PCs():
+    PCs = list(range(1, 41))
+    for i in range(2, 3):
+        plt.plot(PCs, val_arr[0:40 ,i], label = f"k = {i+1}")
+        plt.xlabel('PCs')
+        plt.ylabel('Accuracy')
+    plt.legend()
+    plt.title('Prediction accuracy influenced by number of PCs', fontweight = 'bold')
