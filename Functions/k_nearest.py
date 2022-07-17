@@ -136,3 +136,35 @@ def false_digits(s_size, k=3, PC=30):
     false_digit_proportion = false_digit_counter / digit_counter
 
     return false_digit_proportion
+
+
+def validation_kNN(s_size=10000, k=3, PC=29):
+    """
+    validates the error-rate (string) of kNN for given sample size, k, number of PC
+
+    :param s_size: number of pictures send into kNN-code
+    :param k: k nearest neighbours being selected
+    :param PC: number of principle components being compared
+    """
+
+    true = 0
+    false = 0
+    eigenvectors_sorted = pca.create_sorted_eigenvec(PC)
+    z_array = dat.load_z_arr_train()
+    pca_arr = pca.arr_only(z_array, eigenvectors_sorted)
+    train_array, test_array = dat.load_data()
+    z_test = pca.z_arr(test_array[:,1:])
+    
+    for i in range(0, s_size):
+
+        z_image = z_test[i, :]
+        pca_img = pca.image_only(z_image, eigenvectors_sorted)
+
+
+        result_kNN = kNN(train_array, pca_arr, pca_img, k, train=False)
+        if result_kNN == test_array[i, 0]:
+            true += 1
+        else:
+            false += 1
+
+    return print(f'Accuracy: {(true/s_size)*100}%')

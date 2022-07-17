@@ -31,8 +31,8 @@ def z_arr(arr):
 
     :param arr: cleaned array, without label
     """
-    
-    z_arr = (arr - np.mean(train_arr_cleaned, axis = 0))/np.std(train_arr_cleaned, axis = 0)    
+    clean_arr = np.delete(arr, std0, 1)
+    z_arr = (clean_arr - np.mean(train_arr_cleaned, axis = 0))/np.std(train_arr_cleaned, axis = 0)    
     
     return z_arr
 
