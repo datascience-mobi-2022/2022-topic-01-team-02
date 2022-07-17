@@ -190,5 +190,5 @@ def barplot_false_digits():
 
     ax.set_xlabel('digit', fontsize=9)
     ax.set_ylabel('proportion of wrongly classified digits', fontsize=9)
-    ax.set_title('Wrongly classified digits', fontsize=10)
+    ax.set_title('Wrongly classified digits', fontweight='bold')
     plt.show()
