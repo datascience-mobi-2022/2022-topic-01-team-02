@@ -80,7 +80,7 @@ def ten_digits_z_transfo(dataset, label):
 def correlation_heatmap(arr, name = 'array'):
     cov_arr = np.cov(arr, rowvar = False)
     cov_df = pd.DataFrame(cov_arr)
-    sb.set(rc={"figure.dpi":200, "figure.figsize":(5, 5)})
+    sb.set(rc={"figure.dpi":150, "figure.figsize":(4, 4)})
     sb.heatmap(cov_df, cmap="viridis", annot=False, square=True, cbar_kws={"shrink": 0.8})
     plt.title(f'Correlation of {name}', fontsize =9)
 
