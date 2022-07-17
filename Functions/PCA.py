@@ -25,14 +25,15 @@ def z_transformation(single_image):
     return z_arr, z_single
 
 
-def z_arr(arr):
+def z_arr(arr, test=False):
     """
     centering and scaling, returns z-transformed array
 
     :param arr: cleaned array, without label
     """
-    clean_arr = np.delete(arr, std0, 1)
-    z_arr = (clean_arr - np.mean(train_arr_cleaned, axis = 0))/np.std(train_arr_cleaned, axis = 0)    
+    if test == True:
+        arr = np.delete(arr, std0, 1)
+    z_arr = (arr - np.mean(train_arr_cleaned, axis = 0))/np.std(train_arr_cleaned, axis = 0)    
     
     return z_arr
 

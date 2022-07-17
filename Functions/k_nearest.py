@@ -153,7 +153,7 @@ def validation_kNN(s_size=10000, k=3, PC=29):
     z_array = dat.load_z_arr_train()
     pca_arr = pca.arr_only(z_array, eigenvectors_sorted)
     train_array, test_array = dat.load_data()
-    z_test = pca.z_arr(test_array[:,1:])
+    z_test = pca.z_arr(test_array[:,1:], test=True)
     
     for i in range(0, s_size):
 
