@@ -133,3 +133,22 @@ def visualize_2d(reduced_dataset, labels, i=0, j=1):
     plt.figure(figsize = (12,12))
 
     sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 10, palette = 'icefire', legend='full', style=labels)
+
+
+def PCA_SVD(clean_set, num_components):
+    """
+    principal component analysis, returns array of dataset and single image with defined number of components
+
+    :param clean_set: training dataset (2D-Array; no label; after z-transformation)
+    :param num_components): number of components (integer)
+    :return: returns dataset with reduced dimensions and PCs as features
+    """
+
+    #calculate SVD
+    U, S, Vt = np.linalg.svd(clean_set, full_matrices=False)
+
+
+    #dimension reduction
+    #@ macht matrix multiplikation
+    set_reduced = clean_set @ Vt[:num_components].T
+    return set_reduced
