@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 from Functions import PCA as pca
 from Functions import data_load as dat
+from Functions import additional_code as add
 
 train_array, test_array = dat.load_data()
 train_arr_cleaned = dat.clean_train_arr()
@@ -51,31 +52,29 @@ def ten_digits(dataset):
 
     plt.show()
     
-def ten_digits_z_transfo(dataset, label):
-    """
-    
-    :param dataset: numpy array of train or test dataset, not containing label in first column
-    :param label: 
-    :return: prints first ten numbers
-    """
+def digits_after_z(dataset):
+    arr = np.zeros(dataset.shape)
+    for i in range(0,3):
+        for j in range(1,dataset[:,1:].shape[1]):
+            if np.std(dataset[:,j]) != 0:
+                arr[i,j] = (dataset[i,j]-np.mean(dataset[:,j]))/np.std(dataset[:,j])
 
-    
-
-    liste = []
-    for i in range(0,10):
-        j = 0
-        while i != label[j]:
-            j += 1
-        liste.append(j)
-    
     fig = plt.figure(figsize=(10,5))
-    for i in range(0,10):
-        img = dataset[liste[i], :]
-        img.shape = (28,28)
-        fig.add_subplot(2, 5, i+1)
-        plt.imshow(img, 'gray')
 
-    plt.show()
+    for l in range(0,3):
+        ax = fig.add_subplot(2,3,l+1)
+        img = dataset[l, 1:]
+        img.shape = (28,28)
+        im = ax.imshow(img, 'gray')
+        fig.colorbar(im)
+
+    for k in range(0,3):
+        ax = fig.add_subplot(2,3,k+4)
+        img = arr[k, 1:]
+        img.shape = (28,28)
+        im = ax.imshow(img, 'gray')
+        fig.colorbar(im)
+
 
 def correlation_heatmap(arr, name = 'array'):
     cov_arr = np.cov(arr, rowvar = False)
@@ -106,7 +105,7 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
 
 
 def PC_variance():
-    fig = plt.figure(figsize=(6,3))
+    fig = plt.figure(figsize=(4,2))
     plt.grid(True, linewidth=.5)
     plot = plt.plot([x for x in range(0,717)], var)
     plt.xlabel('Principal Components')
@@ -153,3 +152,16 @@ def acc_PCs():
         plt.ylabel('Accuracy')
     plt.legend()
     plt.title('Prediction accuracy influenced by number of PCs', fontweight = 'bold')
+
+def self_written_digit():
+    img1 = add.load_add_img()
+    img2 = 255-add.convert_add_img()
+    img3 = add.convert_add_img()
+
+    fig = plt.figure(figsize=(9,3))
+    ax1 = fig.add_subplot(1,3,1)
+    ax1.imshow(img1, 'gray')
+    ax2 = fig.add_subplot(1,3,2)
+    ax2.imshow(img2, 'gray')
+    ax3 = fig.add_subplot(1,3,3)
+    ax3.imshow(img3, 'gray')
