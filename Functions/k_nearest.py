@@ -52,7 +52,7 @@ def kNN(ref_arr, arr_reduced, img_reduced, k, train = True):
 
 
 
-def validation_kNN_train(s_size, k=5, PC=30):
+def validation_kNN_train(s_size, k=3, PC=30):
     """
     validates the error-rate (string) of kNN for given sample size, k, number of PC
 
@@ -85,7 +85,7 @@ Anzahl falsch erkannter Digits: {false}\n\
 
 
 
-def validation_kNN_train_matrix(s_size, k=5, PC=30):
+def validation_kNN_train_matrix(s_size, k=3, PC=30):
     """
     validates the error-rate (integer) of kNN for given sample size, k, number of PC
 
@@ -112,3 +112,27 @@ def validation_kNN_train_matrix(s_size, k=5, PC=30):
             false += 1
 
     return (true/s_size)*100
+
+def false_digits(s_size, k=3, PC=30):
+    """
+    validates which digits are often not correctly predicted, relative to their appearence
+    :param s_size: number of pictures send into kNN-code
+    :param k: k nearest neighbours being selected
+    :param PC: number of principle components being compared
+    """
+    digit_counter = np.array([[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]])
+    false_digit_counter = np.array([[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]])
+    eigenvectors_sorted = pca.create_sorted_eigenvec(PC)
+    pca_arr = pca.arr_only(z_array, eigenvectors_sorted)
+
+    for i in range(0, s_size):
+        z_image = z_array[i, :]
+        pca_img = pca.image_only(z_image, eigenvectors_sorted)
+        digit_counter[train_array[i, 0]] += 1
+        result_kNN = knn.kNN(train_array, pca_arr, pca_img, k, train=True)
+        if result_kNN != train_array[i, 0]:
+            false_digit_counter[train_array[i, 0]] += 1
+
+    false_digit_proportion = false_digit_counter / digit_counter
+
+    return false_digit_proportion
