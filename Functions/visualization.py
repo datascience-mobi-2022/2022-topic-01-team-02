@@ -172,3 +172,23 @@ def self_written_digit():
     ax2.imshow(img2, 'gray')
     ax3 = fig.add_subplot(1,3,3)
     ax3.imshow(img3, 'gray')
+
+def barplot_false_digits():
+    false_proportion_df = pd.read_csv("data/false_prop.csv", header = None)
+    false_proportion = false_proportion_df.to_numpy()
+    false_proportion_rel = false_proportion / sum(false_proportion)
+    false = []
+    for i in range(0,10):
+        false.append(false_proportion_rel[i][0]*100)
+    
+    fig = plt.figure(figsize=(5,3))
+    ax = fig.add_axes([0,0,1,1])
+    digits = [x for x in range(0,10)]
+
+    ax.bar(digits, false)
+    plt.xticks(range(0,10,1))
+
+    ax.set_xlabel('digit', fontsize=9)
+    ax.set_ylabel('proportion of wrongly classified digits', fontsize=9)
+    ax.set_title('Wrongly classified digits', fontsize=10)
+    plt.show()
