@@ -98,18 +98,23 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
     :param reduced_arr: dataset with PCs as features
     :param labels: in this case labels of digits for colour coding in plot
     """
+    f, ax = plt.subplots(figsize=(4, 4))
     pca_df = pd.DataFrame(data = {f'PC{i}':reduced_arr[:, i-1], f'PC{j}':reduced_arr[:, j-1]})
-    sb.set(rc={"figure.dpi":150, "figure.figsize":(5, 5)})
 
-    sb.relplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 1, palette = 'icefire', legend='full')
+    ax = sb.scatterplot(data = pca_df, x = f'PC{i}', y = f'PC{j}', hue = labels ,s = 1.5, palette = 'icefire', legend='full')
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.3, .5, .5), fontsize='xx-small')
+    plt.xlabel(f'PC{i}', fontsize=9)
+    plt.ylabel(f'PC{j}', fontsize=9)
+    f.suptitle('Scatterplot of images with two PCs', fontsize=10)
+    plt.show()
 
 
 def PC_variance():
     fig = plt.figure(figsize=(4,2))
     plt.grid(True, linewidth=.5)
     plot = plt.plot([x for x in range(0,717)], var)
-    plt.xlabel('Principal Components')
-    plt.ylabel('obtained variance in percent')
+    plt.xlabel('Principal Components', fontsize=9)
+    plt.ylabel('obtained variance in percent', fontsize=9)
     plt.hlines(y = var[30], xmin=0, xmax=30, color='r', linewidth=.5)
     plt.vlines(x=30, ymin=0, ymax=var[30], color='r', linewidth=.5)
 
@@ -152,6 +157,7 @@ def acc_PCs():
         plt.ylabel('Accuracy')
     plt.legend()
     plt.title('Prediction accuracy influenced by number of PCs', fontweight = 'bold')
+
 
 def self_written_digit():
     img1 = add.load_add_img()
