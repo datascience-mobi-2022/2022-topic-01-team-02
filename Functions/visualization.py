@@ -111,7 +111,7 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
 
 
 def PC_variance():
-    fig = plt.figure(figsize=(5,3))
+    fig = plt.figure(figsize=(4,2))
     plt.grid(True, linewidth=.5)
     plot = plt.plot([x for x in range(0,717)], var)
     plt.xlabel('Principal Components', fontsize=9)
@@ -165,13 +165,14 @@ def self_written_digit():
     img2 = 255-add.convert_add_img()
     img3 = add.convert_add_img()
 
-    fig = plt.figure(figsize=(9,3))
+    fig = plt.figure(figsize=(6,2))
     ax1 = fig.add_subplot(1,3,1)
     ax1.imshow(img1, 'gray')
     ax2 = fig.add_subplot(1,3,2)
     ax2.imshow(img2, 'gray')
     ax3 = fig.add_subplot(1,3,3)
     ax3.imshow(img3, 'gray')
+    plt.show()
 
 def barplot_false_digits():
     false_proportion_df = pd.read_csv("data/false_prop.csv", header = None)
@@ -181,7 +182,7 @@ def barplot_false_digits():
     for i in range(0,10):
         false.append(false_proportion_rel[i][0]*100)
     
-    fig = plt.figure(figsize=(5,3))
+    fig = plt.figure(figsize=(4,2))
     ax = fig.add_axes([0,0,1,1])
     digits = [x for x in range(0,10)]
 
