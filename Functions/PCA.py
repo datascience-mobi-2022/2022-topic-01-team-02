@@ -148,7 +148,6 @@ def PCA_SVD(clean_set, num_components):
     #calculate SVD
     U, S, Vt = np.linalg.svd(clean_set, full_matrices=False)
 
-
     #dimension reduction
     #@ macht matrix multiplikation
     set_reduced = clean_set @ Vt[:num_components].T

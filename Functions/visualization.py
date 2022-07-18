@@ -111,7 +111,7 @@ def principal_comp_2d(reduced_arr, labels, i=1, j=2):
 
 
 def PC_variance():
-    fig = plt.figure(figsize=(4,2))
+    fig = plt.figure(figsize=(5,3))
     plt.grid(True, linewidth=.5)
     plot = plt.plot([x for x in range(0,717)], var)
     plt.xlabel('Principal Components', fontsize=9)
@@ -133,7 +133,7 @@ def heatmap_k_PC(arr, ind_range, col_range, large=True, medium=False, small=Fals
     arr_df.set_axis([inds], axis='index', inplace=True)
     arr_df.set_axis([cols], axis = 'columns', inplace=True)
     if large == True:
-        sb.set(font_scale=0.5, rc={"figure.dpi":200, "figure.figsize":(2.5, 2.5)})
+        sb.set(font_scale=0.5, rc={"figure.dpi":150, "figure.figsize":(2.5, 2.5)})
         plt.title('Accuracy (%) with variable PCs and ks \n 1000 samples', fontsize =8, fontweight = 'bold')
 
     if medium == True:
@@ -191,4 +191,15 @@ def barplot_false_digits():
     ax.set_xlabel('digit', fontsize=9)
     ax.set_ylabel('proportion of wrongly classified digits', fontsize=9)
     ax.set_title('Wrongly classified digits', fontweight='bold')
+    plt.show()
+
+def correlation_PC():
+    plt.figure(figsize=(5,4))
+    pca_arr = pca.arr_only(z_arr, pca.create_sorted_eigenvec(29))
+    df = pd.DataFrame(pca_arr, columns= None, index=None)
+    ax = sb.heatmap(df.corr(method='pearson'), cmap='viridis', square=True)
+    ax.set_title('Correlation of PCs', fontsize=11)
+
+    ax.set_xticklabels([x for x in range(1,30,2)])
+    ax.set_yticklabels([x for x in range(1,30,2)])
     plt.show()
